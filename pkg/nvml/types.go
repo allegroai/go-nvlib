@@ -40,6 +40,7 @@ type Interface interface {
 //
 //go:generate moq -out device_mock.go . Device
 type Device interface {
+	CreateGpuInstance(Info *GpuInstanceProfileInfo) (GpuInstance, Return)
 	CreateGpuInstanceWithPlacement(*GpuInstanceProfileInfo, *GpuInstancePlacement) (GpuInstance, Return)
 	GetArchitecture() (DeviceArchitecture, Return)
 	GetAttributes() (DeviceAttributes, Return)

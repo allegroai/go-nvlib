@@ -27,6 +27,12 @@ func (d nvmlDevice) nvmlDeviceHandle() *nvml.Device {
 	return (*nvml.Device)(&d)
 }
 
+// CreateGpuInstance creates a GPU instance matching the provided GpuInstanceProfileInfo
+func (d nvmlDevice) CreateGpuInstance(Info *GpuInstanceProfileInfo) (GpuInstance, Return) {
+	gpuInstance, r := nvml.Device(d).CreateGpuInstance((*nvml.GpuInstanceProfileInfo)(Info))
+	return nvmlGpuInstance(gpuInstance), Return(r)
+}
+
 // GetIndex returns the index of a Device
 func (d nvmlDevice) GetIndex() (int, Return) {
 	i, r := nvml.Device(d).GetIndex()
